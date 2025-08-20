@@ -76,11 +76,19 @@ app.post('/coleta', async (req, res) => {
     contato,
     prazo,
     criterio,
+
+    // LINKS
     cardapio_links = [],
-    infos_cardapio,
     horarios_links = [],
     taxas_links = [],
     taxa_links = [],
+
+    // FILES (novos)
+    cardapio_files = [],
+    horarios_files = [],
+    taxas_files = [],
+
+    infos_cardapio,
     redes_sociais,
     logo_links = [],
     imagens_informacoes = [],
@@ -97,22 +105,26 @@ app.post('/coleta', async (req, res) => {
       contato,
       prazo,
       criterio,
-      cardapio_links: Array.isArray(cardapio_links) ? cardapio_links.length : cardapio_links ? 1 : 0,
+
+      cardapio_links: Array.isArray(cardapio_links) ? cardapio_links.length : (cardapio_links ? 1 : 0),
+      horarios_links: Array.isArray(horarios_links) ? horarios_links.length : (horarios_links ? 1 : 0),
+      taxas_links: Array.isArray(taxas_links) ? taxas_links.length : (taxas_links ? 1 : 0),
+      taxa_links: Array.isArray(taxa_links) ? taxa_links.length : (taxa_links ? 1 : 0),
+
+      cardapio_files: Array.isArray(cardapio_files) ? cardapio_files.length : 0,
+      horarios_files: Array.isArray(horarios_files) ? horarios_files.length : 0,
+      taxas_files: Array.isArray(taxas_files) ? taxas_files.length : 0,
+
       infos_cardapio: infos_cardapio
         ? String(infos_cardapio).slice(0, 100) + (String(infos_cardapio).length > 100 ? '...' : '')
         : null,
-      horarios_links: Array.isArray(horarios_links) ? horarios_links.length : horarios_links ? 1 : 0,
-      taxas_links: Array.isArray(taxas_links) ? taxas_links.length : taxas_links ? 1 : 0,
-      taxa_links: Array.isArray(taxa_links) ? taxa_links.length : taxa_links ? 1 : 0,
       redes_sociais: redes_sociais
         ? String(redes_sociais).slice(0, 100) + (String(redes_sociais).length > 100 ? '...' : '')
         : null,
-      logo_links: Array.isArray(logo_links) ? logo_links.length : logo_links ? 1 : 0,
+      logo_links: Array.isArray(logo_links) ? logo_links.length : (logo_links ? 1 : 0),
       imagens_informacoes: Array.isArray(imagens_informacoes)
         ? imagens_informacoes.length
-        : imagens_informacoes
-        ? 1
-        : 0,
+        : (imagens_informacoes ? 1 : 0),
       infos_gerais: infos_gerais
         ? String(infos_gerais).slice(0, 100) + (String(infos_gerais).length > 100 ? '...' : '')
         : null,
@@ -130,11 +142,19 @@ app.post('/coleta', async (req, res) => {
       contato,
       prazo,
       criterio,
+
+      // LINKS
       cardapio_links,
-      infos_cardapio,
       horarios_links,
       taxas_links,
       taxa_links,
+
+      // FILES (novos)
+      cardapio_files,
+      horarios_files,
+      taxas_files,
+
+      infos_cardapio,
       redes_sociais,
       logo_links,
       imagens_informacoes,
