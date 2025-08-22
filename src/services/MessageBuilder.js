@@ -17,29 +17,47 @@ function limparLinks(lista) {
     );
 }
 
+// Novo: formata a linha do Pix considerando as 3 opções
+function formatPixStatus(pix_status, cliente_promocional_pix) {
+  const s = String(pix_status || '').trim();
+  if (s) return `➡️ Pix Automático: \`${s}\``;
+  // compatibilidade com o boolean antigo
+  if (cliente_promocional_pix) return '➡️ `Cliente Promocional com Pix`';
+  return ''; // se não vier nada, omitimos a linha
+}
+
 export function buildMensagemInicial({
   id,
+  cliente,                 // 👈 novo
   descricao,
   infos_cardapio,
   contato,
   prazo,
   criterio,
+  pix_status,              // 👈 novo
   cliente_promocional_pix = false,
 }) {
   const emoji = emojiFromCriterio(criterio);
 
   const parts = [
     `📌 ID: \`${id}\``,
-    `➡️ Descrição do Cliente: \`${descricao || 'Sem obs'}\``,
-    `➡️ Observação do Cardápio: \`${infos_cardapio || 'Sem obs'}\``,
-    `➡️ Contato do Cliente: \`${contato}\``,
-    `➡️ Prazo de Entrega Interno: \`${prazo}\``,
-    `➡️ Critério: \`${emoji}\``,
   ];
 
-  if (cliente_promocional_pix) {
-    parts.push('➡️ `Cliente Promocional com Pix`');
+  if (cliente) {
+    parts.push(`🏪 Cliente: \`${cliente}\``);
   }
+
+  parts.push(
+    `➡️ Descrição do Cliente: \`${descricao || 'Sem obs'}\``,
+    `➡️ Observação do Cardápio: \`${infos_cardapio || 'Sem obs'}\``,
+    `➡️ Contato do Cliente: \`${contato || '-'}\``,
+    `➡️ Prazo de Entrega Interno: \`${prazo || '-'}\``,
+    `➡️ Critério: \`${emoji}\``,
+  );
+
+  const pixLine = formatPixStatus(pix_status, cliente_promocional_pix);
+  if (pixLine) parts.push(pixLine);
+
   return parts.join('\n');
 }
 

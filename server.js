@@ -76,6 +76,7 @@ app.post('/coleta', async (req, res) => {
     contato,
     prazo,
     criterio,
+    pix_status,
 
     // LINKS
     cardapio_links = [],
@@ -142,6 +143,7 @@ app.post('/coleta', async (req, res) => {
       contato,
       prazo,
       criterio,
+      pix_status,
 
       // LINKS
       cardapio_links,
