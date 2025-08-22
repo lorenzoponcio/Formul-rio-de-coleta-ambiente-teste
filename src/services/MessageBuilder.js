@@ -44,13 +44,13 @@ export function buildMensagemInicial({
   ];
 
   if (cliente) {
-    parts.push(`🏪 Cliente: \`${cliente}\``);
+    parts.push(`➡️ Cliente: \`${cliente}\``);
   }
 
   parts.push(
     `➡️ Descrição do Cliente: \`${descricao || 'Sem obs'}\``,
-    `➡️ Observação do Cardápio: \`${infos_cardapio || 'Sem obs'}\``,
     `➡️ Contato do Cliente: \`${contato || '-'}\``,
+    `➡️ Observação do Cardápio: \`${infos_cardapio || 'Sem obs'}\``,
     `➡️ Prazo de Entrega Interno: \`${prazo || '-'}\``,
     `➡️ Critério: \`${emoji}\``,
   );
